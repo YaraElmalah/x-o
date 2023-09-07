@@ -96,8 +96,32 @@ void drawTheReactangle(char choices[]) {//Draw the rectangle
 }
 
 
-bool isGameFinished(char choice) {
-	return false;
+bool checkIfGameFinished(char choices[]) {
+
+	if ((choices[0] == choices[1]) && (choices[1] == choices[2]) && choices[1] != ' ') {
+		return true;
+	}
+	else if ((choices[0] == choices[3]) && (choices[3] == choices[6]) && choices[3] != ' ') {
+		return true;
+	}
+	else if ((choices[0] == choices[4]) && (choices[4] == choices[8]) && choices[4] != ' ') {
+		return true;
+	}
+	else if ((choices[1] == choices[4]) && (choices[4] == choices[7]) && choices[4] != ' ') {
+		return true;
+	}
+	else if ((choices[2] == choices[4]) && (choices[4] == choices[6]) && choices[4] != ' ') {
+		return true;
+	}
+	else if ((choices[3] == choices[4]) && (choices[4] == choices[5]) && choices[4] != ' ') {
+		return true;
+	}
+	else if ((choices[6] == choices[7]) && (choices[7] == choices[8]) && choices[7] != ' ') {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 int main()
@@ -142,12 +166,15 @@ int main()
 			if (choices[userChoicePosition - 1] == ' ') {
 				choices[userChoicePosition - 1] = userChoice;
 				drawTheReactangle(choices);
+				isGameFinished = checkIfGameFinished(choices);
 			}
 			else {
 				std::cout << "This position is reserved" << endl;
 				drawTheReactangle(choices);
 			}
+
 		}
 	}
 
+	std::cout << "Game Over, Thank You" << endl;
 }
