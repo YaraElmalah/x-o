@@ -123,6 +123,126 @@ bool checkIfGameFinished(char choices[]) {
 		return false;
 	}
 }
+/*
+* If it returns 10 means that there is no empty choice, we should end the same at this case.
+*/
+int findTheClosestEmptyPosition(char choices[]) {
+	for (int i = 0; i <= 9; i++) {
+		if (choices[i] == ' ') {
+			return i;
+		}
+	}
+	return 10;
+}
+int checkTheBestPosition(char choices[]) {
+	if ((choices[0] == choices[1]) && (choices[1] == choices[2]) && choices[1] == ' ') {
+		return 1;
+	}
+	else if ((choices[0] == choices[1]) && (choices[1] == choices[2]) && choices[0] == ' ') {
+		return 0;
+	}
+	else if ((choices[0] == choices[1]) && (choices[1] == choices[2]) && choices[2] == ' ') {
+		return 2;
+	}
+	else if ((choices[0] == choices[3]) && (choices[3] == choices[6]) && choices[3] == ' ') {
+		return 3;
+	}
+	else if ((choices[0] == choices[3]) && (choices[3] == choices[6]) && choices[6] == ' ') {
+		return 6;
+	}
+	else if ((choices[0] == choices[3]) && (choices[3] == choices[6]) && choices[0] == ' ') {
+		return 0;
+	}
+	else if ((choices[0] == choices[4]) && (choices[4] == choices[8]) && choices[8] == ' ') {
+		return 8;
+	}
+	else if ((choices[0] == choices[4]) && (choices[4] == choices[8]) && choices[4] == ' ') {
+		return 4;
+	}
+	else if ((choices[1] == choices[4]) && (choices[4] == choices[7]) && choices[4] == ' ') {
+		return 4;
+	}
+	else if ((choices[1] == choices[4]) && (choices[4] == choices[7]) && choices[7] == ' ') {
+		return 7;
+	}
+	else if ((choices[1] == choices[4]) && (choices[4] == choices[7]) && choices[1] == ' ') {
+		return 1;
+	}
+	else if ((choices[2] == choices[4]) && (choices[4] == choices[6]) && choices[4] == ' ') {
+		return 4;
+	}
+	else if ((choices[2] == choices[4]) && (choices[4] == choices[6]) && choices[6] == ' ') {
+		return 6;
+	}
+	else if ((choices[2] == choices[4]) && (choices[4] == choices[6]) && choices[2] == ' ') {
+		return 2;
+	}
+	else if ((choices[3] == choices[4]) && (choices[4] == choices[5]) && choices[4] == ' ') {
+		return 4;
+	}
+	else if ((choices[3] == choices[4]) && (choices[4] == choices[5]) && choices[5] == ' ') {
+		return 5;
+	}
+	else if ((choices[3] == choices[4]) && (choices[4] == choices[5]) && choices[3] == ' ') {
+		return 3;
+	}
+	else if ((choices[6] == choices[7]) && (choices[7] == choices[8]) && choices[7] == ' ') {
+		return 7;
+	}
+	else if ((choices[6] == choices[7]) && (choices[7] == choices[8]) && choices[8] == ' ') {
+		return 8;
+	}
+	else if ((choices[6] == choices[7]) && (choices[7] == choices[8]) && choices[6] == ' ') {
+		return 6;
+	}
+	else {
+		int pos = findTheClosestEmptyPosition(choices);
+		return pos + 1;
+	}
+}
+void runTheGame(char userChoice, char choices[], char compChoice) {
+	bool isGameFinished{ false };
+	int userChoicePosition{ 0 };
+	int compChoicePosition{ 0 };
+	bool isUserTurn{ true };
+	while (!isGameFinished) {
+		if (isUserTurn) {
+			std::cout << "Enter the position you want to place your " << userChoice << " : ";
+			std::cin >> userChoicePosition;
+			if (choices[userChoicePosition - 1] == ' ') {
+				choices[userChoicePosition - 1] = userChoice;
+				drawTheReactangle(choices);
+				isUserTurn = false;
+			}
+			else {
+				std::cout << "This position is reserved, Please enter another position" << endl;
+				drawTheReactangle(choices);
+				isUserTurn = true;
+			}
+
+
+		}
+		else {
+			//Computer Turn
+			compChoicePosition = checkTheBestPosition(choices);
+			if (compChoicePosition == 10) {
+				isGameFinished = true;
+			}
+			else {
+				choices[compChoicePosition - 1] = compChoice;
+				drawTheReactangle(choices);
+				isGameFinished = checkIfGameFinished(choices);
+			}
+			isUserTurn = true;
+		}
+		isGameFinished = checkIfGameFinished(choices);
+
+	}
+	drawTheReactangle(choices);
+
+	std::cout << "Game Over, Thank You" << endl;
+
+}
 
 int main()
 {
@@ -148,33 +268,11 @@ int main()
 	std::cout << "Let's start the game" << endl;
 
 
-
-	if (userChoice == 'x') {
-		drawTheReactangle(choices);
-		std::cout << "Enter the position you want to place your " << userChoice << " : ";
-		cin >> userChoicePosition;
-		choices[userChoicePosition - 1] = userChoice;
-		drawTheReactangle(choices);
-	}
-	else {
+	if (userChoice == 'o') {
 		choices[0] = computerChoice;
-		//Draw the rectangle
-		drawTheReactangle(choices);
-		while (!isGameFinished) {
-			std::cout << "Enter the position you want to place your " << userChoice << " : ";
-			std::cin >> userChoicePosition;
-			if (choices[userChoicePosition - 1] == ' ') {
-				choices[userChoicePosition - 1] = userChoice;
-				drawTheReactangle(choices);
-				isGameFinished = checkIfGameFinished(choices);
-			}
-			else {
-				std::cout << "This position is reserved" << endl;
-				drawTheReactangle(choices);
-			}
 
-		}
 	}
+	drawTheReactangle(choices);
+	runTheGame(userChoice, choices, computerChoice);
 
-	std::cout << "Game Over, Thank You" << endl;
 }
