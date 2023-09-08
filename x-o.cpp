@@ -9,44 +9,46 @@ void drawTheReactangle(char choices[]) {//Draw the rectangle
 	int width{ 25 }, height{ 25 };
 	int fistverticleLine{ width / 3 };
 	int secondverticleLine{ fistverticleLine + (width / 3) };
-	int drawPlacex1{ 0 }, drawPlacey1{ 0 }, drawPlacex2{ 0 }, drawPlacey2{ 0 }, drawPlacex3{ 0 }, drawPlacey3{ 0 }, drawPlacex4{ 0 }, drawPlacey4{ 0 }, drawPlacex5{ 0 }, drawPlacey5{ 0 }, drawPlacex6{ 0 }, drawPlacey6{ 0 }, drawPlacex7{ 0 }, drawPlacey7{ 0 }, drawPlacex8{ 0 }, drawPlacey8{ 0 }, drawPlacex9{ 0 }, drawPlacey9{ 0 };
+	//t drawPlacex1{ 0 }, drawPlacey1{ 0 }, drawPlacex2{ 0 }, drawPlacey2{ 0 }, drawPlacex3{ 0 }, drawPlacey3{ 0 }, drawPlacex4{ 0 }, drawPlacey4{ 0 }, drawPlacex5{ 0 }, drawPlacey5{ 0 }, drawPlacex6{ 0 }, drawPlacey6{ 0 }, drawPlacex7{ 0 }, drawPlacey7{ 0 }, drawPlacex8{ 0 }, drawPlacey8{ 0 }, drawPlacex9{ 0 }, drawPlacey9{ 0 };
+	int drawPlacex[9];
+	int drawPlacey[9];
 	for (int c = 0; c <= 9; c++) {
 		int pos = { c + 1 };
 		if (c == 0 && choices[c] != ' ') {
-			drawPlacex1 = (fistverticleLine / 2) * pos;
-			drawPlacey1 = (fistverticleLine / 2) * pos;
+			drawPlacex[c] = (fistverticleLine / 2) * pos;
+			drawPlacey[c] = (fistverticleLine / 2) * pos;
 		}
 		else if (c == 1 && choices[c] != ' ') {
-			drawPlacex2 = (width / 2);
-			drawPlacey2 = (fistverticleLine / 2);
+			drawPlacex[c] = (width / 2);
+			drawPlacey[c] = (fistverticleLine / 2);
 		}
 		else if (c == 2 && choices[c] != ' ') {
-			drawPlacex3 = secondverticleLine + (fistverticleLine / 2);
-			drawPlacey3 = (fistverticleLine / 2);
+			drawPlacex[c] = secondverticleLine + (fistverticleLine / 2);
+			drawPlacey[c] = (fistverticleLine / 2);
 		}
 		else if (c == 3 && choices[c] != ' ') {
-			drawPlacex4 = (fistverticleLine / 2);
-			drawPlacey4 = (width / 2);
+			drawPlacex[c] = (fistverticleLine / 2);
+			drawPlacey[c] = (width / 2);
 		}
 		else if (c == 4 && choices[c] != ' ') {
-			drawPlacex5 = (width / 2);
-			drawPlacey5 = (width / 2);
+			drawPlacex[c] = (width / 2);
+			drawPlacey[c] = (width / 2);
 		}
 		if (c == 5 && choices[c] != ' ') {
-			drawPlacex6 = secondverticleLine + (fistverticleLine / 2);
-			drawPlacey6 = (width / 2);
+			drawPlacex[c] = secondverticleLine + (fistverticleLine / 2);
+			drawPlacey[c] = (width / 2);
 		}
 		if (c == 6 && choices[c] != ' ') {
-			drawPlacex7 = (fistverticleLine / 2);
-			drawPlacey7 = (width / 6) * 5;
+			drawPlacex[c] = (fistverticleLine / 2);
+			drawPlacey[c] = (width / 6) * 5;
 		}
 		if (c == 7 && choices[c] != ' ') {
-			drawPlacex8 = (width / 2);
-			drawPlacey8 = (width / 6) * 5;
+			drawPlacex[c] = (width / 2);
+			drawPlacey[c] = (width / 6) * 5;
 		}
 		if (c == 8 && choices[c] != ' ') {
-			drawPlacex9 = secondverticleLine + (fistverticleLine / 2);
-			drawPlacey9 = (width / 6) * 5;
+			drawPlacex[c] = secondverticleLine + (fistverticleLine / 2);
+			drawPlacey[c] = (width / 6) * 5;
 		}
 
 	}
@@ -59,31 +61,31 @@ void drawTheReactangle(char choices[]) {//Draw the rectangle
 			}
 			else {
 
-				if (i == drawPlacey1 && j == drawPlacex1) {
+				if (i == drawPlacey[0] && j == drawPlacex[0]) {
 					std::cout << choices[0];
 				}
-				else if (i == drawPlacey2 && j == drawPlacex2) {
+				else if (i == drawPlacey[1] && j == drawPlacex[1]) {
 					std::cout << choices[1];
 				}
-				else if (i == drawPlacey3 && j == drawPlacex3) {
+				else if (i == drawPlacey[2] && j == drawPlacex[2]) {
 					std::cout << choices[2];
 				}
-				else if (i == drawPlacey4 && j == drawPlacex4) {
+				else if (i == drawPlacey[3] && j == drawPlacex[3]) {
 					std::cout << choices[3];
 				}
-				else if (i == drawPlacey5 && j == drawPlacex5) {
+				else if (i == drawPlacey[4] && j == drawPlacex[4]) {
 					std::cout << choices[4];
 				}
-				else if (i == drawPlacey6 && j == drawPlacex6) {
+				else if (i == drawPlacey[5] && j == drawPlacex[5]) {
 					std::cout << choices[5];
 				}
-				else if (i == drawPlacey7 && j == drawPlacex7) {
+				else if (i == drawPlacey[6] && j == drawPlacex[6]) {
 					std::cout << choices[6];
 				}
-				else if (i == drawPlacey8 && j == drawPlacex8) {
+				else if (i == drawPlacey[7] && j == drawPlacex[7]) {
 					std::cout << choices[7];
 				}
-				else if (i == drawPlacey9 && j == drawPlacex9) {
+				else if (i == drawPlacey[8] && j == drawPlacex[8]) {
 					std::cout << choices[8];
 				}
 				else {
